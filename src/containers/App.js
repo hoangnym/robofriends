@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import CardList from '../components/CardList';
 import SearchBox from '../components/SearchBox';
 import Scroll from '../components/Scroll';
+import ErrorBoundry from '../components/ErrorBoundry';
 import './App.css'
 
 const REACT_VERSION = React.version;
@@ -37,11 +38,11 @@ class App extends Component {
                 <div className='tc'>
                     <h1 className='f2'>RoboFriends</h1>
                     <p>on React Version: {REACT_VERSION}</p>
-                    <SearchBox 
-                        searchChange={this.onSearchChange}
-                    />
+                    <SearchBox searchChange={this.onSearchChange}/>
                     <Scroll>
-                        <CardList robots={filteredRobots}/>
+                        <ErrorBoundry>
+                            <CardList robots={filteredRobots}/>
+                        </ErrorBoundry>
                     </Scroll>
                 </div>
             )
